@@ -1,14 +1,9 @@
 import Router, { Request, Response } from 'express';
 
 const router = Router();
-import { PrismaClient } from '@prisma/client';
 import { AdsController } from './controllers/AdsController';
 import { GamesController } from './controllers/GamesController';
 import { DiscordController } from './controllers/DiscordController';
-
-const prisma = new PrismaClient({
-  log: ['query'],
-});
 
 router.get('/games', new GamesController().index);
 
