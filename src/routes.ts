@@ -4,6 +4,7 @@ const router = Router();
 import { PrismaClient } from '@prisma/client';
 import { convertHourStringToMinutes } from './utils/convert-hour-string-to-minutes';
 import { convertMinutesToHourString } from './utils/convert-minutes-to-hour-string';
+import { AdsController } from './controllers/AdsController';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -23,25 +24,7 @@ router.get('/games', async (request: Request, response: Response) => {
   return response.json(games);
 });
 
-router.post('/games/:id/ads', async (request: Request, response: Response) => {
-  const gameId = request.params.id;
-  const body: any = request.body;
-
-  const ad = await prisma.ad.create({
-    data: {
-      gameId,
-      name: body.name,
-      yearsPlaying: body.yearsPlaying,
-      discord: body.discord,
-      weekDays: body.weekDays.join(','),
-      hourStart: convertHourStringToMinutes(body.hourStart),
-      hourEnd: convertHourStringToMinutes(body.hourEnd),
-      useVoiceChannel: body.useVoiceChannel,
-    },
-  });
-
-  return response.status(201).json(ad);
-});
+router.post('/games/:id/ads', new AdsController().store);
 
 router.get('/games/:id/ads', async (request: Request, response: Response) => {
   const gameId = request.params.id;
