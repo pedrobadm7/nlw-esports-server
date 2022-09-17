@@ -8,15 +8,15 @@ import { AuthController } from './controllers/AuthController';
 import { UsersController } from './controllers/UsersController';
 import { isAuthenticated } from './middlewares/isAuthenticated';
 
-router.get('/games', new GamesController().index);
+router.get('/games', isAuthenticated, new GamesController().index);
 
-router.get('/games/:id/ads', new AdsController().show);
+router.get('/games/:id/ads', isAuthenticated, new AdsController().show);
 
 router.get('/profile', isAuthenticated, new UsersController().index);
 
-router.get('/ads/:id/discord', new DiscordController().show);
+router.get('/ads/:id/discord', isAuthenticated, new DiscordController().show);
 
-router.post('/games/:id/ads', new AdsController().store);
+router.post('/games/:id/ads', isAuthenticated, new AdsController().store);
 
 router.post('/auth/register', new AuthController().auth);
 

@@ -20,6 +20,7 @@ model Game {
 model Ad {
   id              String   @id @default(uuid())
   gameId          String
+  userId          String?
   name            String
   yearsPlaying    Int
   discord         String
@@ -29,6 +30,7 @@ model Ad {
   useVoiceChannel Boolean
   createdAt       DateTime @default(now())
   game            Game     @relation(fields: [gameId], references: [id])
+  User            User?    @relation(fields: [userId], references: [id])
 }
 
 model User {
@@ -38,6 +40,7 @@ model User {
   refreshTokens RefreshToken[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  ads           Ad[]
 }
 
 model RefreshToken {
