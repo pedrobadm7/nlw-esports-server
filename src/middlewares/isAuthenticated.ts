@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 export function isAuthenticated(
-  request: any,
+  request: Request,
   response: Response,
   next: NextFunction
 ) {

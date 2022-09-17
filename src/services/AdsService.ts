@@ -3,9 +3,10 @@ import { convertMinutesToHourString } from '../utils/convert-minutes-to-hour-str
 import { prisma } from '../utils/db';
 
 class AdsService {
-  async create(gameId: string, body: any) {
+  async create(userId: string, gameId: string, body: any) {
     const ad = await prisma.ad.create({
       data: {
+        userId,
         gameId,
         name: body.name,
         yearsPlaying: body.yearsPlaying,
@@ -30,6 +31,8 @@ class AdsService {
         yearsPlaying: true,
         hourStart: true,
         hourEnd: true,
+        game: true,
+        User: true,
       },
       where: {
         gameId,
