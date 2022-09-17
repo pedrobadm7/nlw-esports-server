@@ -1,9 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient({
-  log: ['query'],
-});
-
+import { prisma } from '../utils/db';
 class GamesService {
   async findAll() {
     const games = await prisma.game.findMany({

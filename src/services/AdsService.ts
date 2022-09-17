@@ -1,10 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { convertHourStringToMinutes } from '../utils/convert-hour-string-to-minutes';
 import { convertMinutesToHourString } from '../utils/convert-minutes-to-hour-string';
-
-const prisma = new PrismaClient({
-  log: ['query'],
-});
+import { prisma } from '../utils/db';
 
 class AdsService {
   async create(gameId: string, body: any) {

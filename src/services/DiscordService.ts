@@ -1,8 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient({
-  log: ['query'],
-});
+import { prisma } from '../utils/db';
 
 class DiscordService {
   async findById(adId: string) {
