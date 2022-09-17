@@ -32,7 +32,7 @@ class AdsService {
         hourStart: true,
         hourEnd: true,
         game: true,
-        User: true,
+        user: true,
       },
       where: {
         gameId,

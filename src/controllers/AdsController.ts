@@ -10,7 +10,7 @@ class AdsController {
     const ads: any = await service.findById(gameId);
 
     ads.map(
-      (item: { User: { password?: string } }) => delete item?.User?.password
+      (item: { user: { password?: string } }) => delete item?.user?.password
     );
 
     return response.json(ads);

@@ -30,7 +30,7 @@ model Ad {
   useVoiceChannel Boolean
   createdAt       DateTime @default(now())
   game            Game     @relation(fields: [gameId], references: [id])
-  User            User?    @relation(fields: [userId], references: [id])
+  user            User?    @relation(fields: [userId], references: [id])
 }
 
 model User {
